@@ -1,0 +1,5 @@
+{
+  "org": "flisk-sh",
+  "maintainers": ["kburym", "odykyi"],
+  "registry": { "repo": "flisk", "issue": 3518, "seats": 100 }
+}
