@@ -1,0 +1,12 @@
+{
+  "name": "flisk-badges",
+  "private": true,
+  "type": "module",
+  "description": "Badge pages for everyone outside the Flisk team who merged a pull request in flisk-sh.",
+  "license": "MIT",
+  "engines": { "node": ">=20" },
+  "scripts": {
+    "build": "node build.mjs",
+    "test": "node --test"
+  }
+}
