@@ -33,7 +33,7 @@ if (opts.fixture) {
   const prs = JSON.parse(await readFile(opts.fixture, "utf8"));
   const seats = opts.seats ? JSON.parse(await readFile(opts.seats, "utf8")) : [];
   result = {
-    repos: [...new Set(prs.map((pr) => pr.repo))].sort(),
+    repos: [...new Set(prs.map((pr) => pr.repo))].sort((a, b) => (a < b ? -1 : a > b ? 1 : 0)),
     seats,
     people: attachSeats(aggregate(prs, settings), seats),
   };

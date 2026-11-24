@@ -146,7 +146,7 @@ export function aggregate(prs, { maintainers = [], optout = [], latest = 5 } = {
   return [...people.values()]
     .map((p) => ({
       ...p,
-      repos: [...p.repos].sort(),
+      repos: [...p.repos].sort((a, b) => (a < b ? -1 : a > b ? 1 : 0)),
       merges: p.merges.sort((a, b) => b.mergedAt.localeCompare(a.mergedAt)).slice(0, latest),
     }))
     .sort((a, b) => b.prs - a.prs || a.first.localeCompare(b.first) || a.login.localeCompare(b.login));
@@ -187,7 +187,7 @@ export async function collect({ client, org, maintainers, optout, registry, log 
     try {
       seats = await client.seats(org, registry.repo, registry.issue);
     } catch (error) {
-      log(`Could not read the seat registry: ${error.message}`);
+      log(`Could not read the seat registry: ${String(error.message).replace(/[\r\n]+/g, " ")}`);
     }
   }
   const repos = await client.repos(org);
