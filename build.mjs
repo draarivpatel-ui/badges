@@ -14,7 +14,10 @@ function args(argv) {
   for (let i = 0; i < argv.length; i++) {
     const key = argv[i];
     if (!key.startsWith("--")) throw new Error(`Unknown argument ${key}`);
-    out[key.slice(2)] = argv[++i];
+    const value = argv[i + 1];
+    if (!value || value.startsWith("--")) throw new Error(`Missing value for ${key}`);
+    out[key.slice(2)] = value;
+    i++;
   }
   return out;
 }
